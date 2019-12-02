@@ -11,6 +11,23 @@ const server= express();
 server.use(express.json());
 
 
+//get all users from database
+
+server.get("/api/users",(req,res)=>{
+
+    db.find()
+    .then(users=>{
+        res.status(200).json(users)
+    })
+    .catch(error => {
+    console.log("error on GET /users", error);
+    res
+      .status(500)
+      .json({ errorMessage: "error getting lsit of users from database" });
+  });
+})
+
+
 
 
 

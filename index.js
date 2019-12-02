@@ -7,6 +7,7 @@ const db = require("./data/db.js");
 const server = express();
 
 server.use(express.json());
+server.use(cors())
 
 //get all users from database
 

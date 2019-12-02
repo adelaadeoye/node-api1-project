@@ -14,9 +14,10 @@ server.use(express.json());
 //get all users from database
 
 server.get("/api/users",(req,res)=>{
-
+//call db function to find users
     db.find()
     .then(users=>{
+        //send list of users in db as response
         res.status(200).json(users)
     })
     .catch(error => {
@@ -27,6 +28,24 @@ server.get("/api/users",(req,res)=>{
   });
 })
 
+
+//post new users
+
+server.post('/api/users',(req,res)=>{
+const userData= req.body;
+
+db.insert(userData)
+.then(users=>{
+    res.status(201).json(users)
+})
+.catch(error => {
+    console.log("error on POST /users", error);
+    res
+      .status(500)
+      .json({ errorMessage: "error adding user to database" });
+  });
+
+})
 
 
 

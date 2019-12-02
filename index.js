@@ -3,11 +3,12 @@ console.log("Server Test");
 
 const express = require("express");
 const db = require("./data/db.js");
+const cors =require('cors')
 
 const server = express();
 
 server.use(express.json());
-server.use(cors())
+server.use(cors());
 
 //get all users from database
 

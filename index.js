@@ -111,7 +111,21 @@ server.put("/api/users/:id", (req, res) => {
   db.update(id, userData)
     .then(users => {
       if (users) {
-        res.status(200).json(users);
+        db.findById(id)
+        .then(users => {
+          //search list to get user
+          if (users) {
+            res.status(200).json(users);
+          } else {
+            res.status(404).json({  message: "The user with the specified ID does not exist." });
+          }
+        })
+        .catch(error => {
+          console.log("error on GET /users", error);
+          res
+            .status(500)
+            .json({ error: "The user information could not be retrieved." });
+        });
       } else {
         res.status(404).json({ message: "The user with the specified ID does not exist." });
       }

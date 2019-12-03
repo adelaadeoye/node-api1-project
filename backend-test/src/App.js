@@ -138,7 +138,7 @@ function App() {
         <div className={classes.root}>
           <Grid container spacing={3}>
             {user.map(item => (
-              <Grid key={item.id} item xs={6}>
+              <Grid key={item.id} item xs={6} xl={6} sm={6}>
                 <Paper className={classes.paper}>
                   <Typography variant="h5" component="h2">
                     Name: {item.name}
